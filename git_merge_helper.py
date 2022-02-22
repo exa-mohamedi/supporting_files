@@ -68,7 +68,12 @@ def main():
             Hash, Sub, Usr = re.search(r'HASH=\{(.+?)\},SUB=\{(.+?)\},USER=\{(.+?)\}', Line).groups()
             if default_values_dict['Merge_Branch_Commit_Msg'] in Sub or default_values_dict['Merge_Pull_Request'] in Sub:
                 print(f"Hash = {Hash} Subject = {Sub} User = {Usr}")
-                Msg = "Merge Branch commit found. Please remove the commit from the log."
+                Msg = ""
+                if default_values_dict['Merge_Branch_Commit_Msg'] in Sub:
+                    Msg = "Merge Branch commit found. Please remove the commit from the log."
+                elif default_values_dict['Merge_Pull_Request'] in Sub:
+                    Msg = "Merge Pull Request commit found. Please remove the commit from the log."
+
                 if default_values_dict['Throw_Error_For_Specific_Msg']:
                     print(f"[ERROR] {Msg}")
                     exit(1)
@@ -88,8 +93,8 @@ def argumentParser():
     parser = argparse.ArgumentParser(description='Load the commit hash from git log file. And extract the hashes to '
                                                  'cherry-pick')
     parser.add_argument('--hashlogfile', '-l', help='Hash Log file')
-    parser.add_argument('--strictcheck', '-s', help='Throw error for invalid hashes.\n'
-                                                    'Accepted values are 0 (No) ot 1 (Yes)\n'
+    parser.add_argument('--strictcheck', '-s', help='Throw error for invalid hashes.'
+                                                    'Accepted values are 0 (No) ot 1 (Yes).'
                                                     'Default value: 1 (Yes)')
     args = parser.parse_args()
     return args
