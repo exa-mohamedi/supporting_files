@@ -53,10 +53,11 @@ def main():
             default_values_dict['Throw_Error_For_Specific_Msg'] = True
 
     Filename = args.hashlogfile
-
+    print("===========================Configurations===========================")
     # Print Configuration
     print(f"Git Hash Log file = {Filename}")
     print(f"Strict Hash Verification = {default_values_dict['Throw_Error_For_Specific_Msg']}")
+    print("====================================================================")
 
     FileHandle = open(Filename, "r")
     Content = FileHandle.read()
