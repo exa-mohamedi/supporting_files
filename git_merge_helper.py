@@ -2,7 +2,7 @@
 To pick the changes from one merge commit to another.
 
 1. Use to load all commits of a merge commit (962f08418c7e4631d6fd77bf165c5fba40de0f61):
-git config --global alias.log-merge '!f() { git log --stat "$1^..$1" --pretty=format:HASH={%H},SUB={%s}; }; f' && git log-merge 962f08418c7e4631d6fd77bf165c5fba40de0f61 | tee Commits
+git config --global alias.log-merge '!f() { git log --stat "$1^..$1" --pretty=format:HASH={%H},SUB={%s},USER={%an}; }; f' && git log-merge a4882768251d5cf84261bfd86a92323c258b29e5 | tee Commits
 
 2. Check the commits log and delete the commits not needed manually (Ex: Branch Merges).
 
