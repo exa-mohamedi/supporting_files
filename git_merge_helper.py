@@ -27,7 +27,7 @@ def generate_commit_cmd(hash : list):
     print("=====================Git Commits to Cherry-Pick=====================")
     hash.reverse()
     for i in hash:
-        print(f"git cherry-pick {i.hash} # {i.sub} | {i.user}")
+        print(f"git cherry-pick -x {i.hash} # {i.sub} | {i.user}")
     print("git push")
 
 def default_values():
